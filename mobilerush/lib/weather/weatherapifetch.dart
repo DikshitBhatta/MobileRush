@@ -1,15 +1,25 @@
+// weather_fetch_api.dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mobilerush/weather model/\weathermodel.dart';
 
-Future<Weather> fetchWeather(String city) async {
-  final response = await http.get(
-    Uri.parse('https://mr-api-three.vercel.app/weather?city=$city'),
-  );
+class WeatherAPI {
+  static const String baseUrl = 'https://mr-api-three.vercel.app/weather';
 
-  if (response.statusCode == 200) {
-    final data = json.decode(response.body);
-    return Weather.fromJson(data);
-  } else {
-    throw Exception('Failed to load weather data');
+  static Future<WeatherModel?> fetchWeather() async {
+    try {
+      final response = await http.get(Uri.parse(baseUrl));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print('API Response: $data'); // Debugging
+        return WeatherModel.fromJson(data);
+      } else {
+        print('Failed to load weather data: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching weather data: $e');
+    }
+    return null;
   }
 }

@@ -1,22 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: RecommendedPlacesScreen(),
-    );
-  }
-}
-
 class RecommendedPlacesScreen extends StatelessWidget {
   RecommendedPlacesScreen({super.key});
 
@@ -46,11 +30,13 @@ class RecommendedPlacesScreen extends StatelessWidget {
   final List<charts.Series<int, String>> rainData = [
     charts.Series<int, String>(
       id: 'Rain',
-      data: [1, 3, 2, 5, 4, 1, 0],
+      data: [1, 3, 2, 5, 4, 5, 1], // Data for all days
       domainFn: (value, index) =>
           ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index!],
       measureFn: (value, index) => value,
-      colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+      colorFn: (value, index) => index == 5
+          ? charts.MaterialPalette.blue.shadeDefault // Friday
+          : charts.MaterialPalette.gray.shadeDefault, // Other days
     ),
   ];
 
@@ -78,9 +64,24 @@ class RecommendedPlacesScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final place = places[index];
                   return ListTile(
-                    leading: const CircleAvatar(
-                      backgroundImage: AssetImage('assets/image.png'), // Add your asset
-                      radius: 30,
+                    leading: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        const CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/image.png'), // Add your asset
+                          radius: 30,
+                        ),
+                        Positioned(
+                          top: -10,
+                          left: -3, // Change to left
+                          child: Image.asset(
+                            'assets/Christmashat.png', // Add your Christmas hat asset
+                            width: 30,
+                            height: 30,
+                          ),
+                        ),
+                      ],
                     ),
                     title: Text(place['name']),
                     subtitle: Text(

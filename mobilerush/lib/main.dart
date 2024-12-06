@@ -1,22 +1,54 @@
+// main.dart
 import 'package:flutter/material.dart';
-import 'recommendedplaces.dart';
+import 'package:mobilerush/weather/weatherapifetch.dart';
+import 'package:mobilerush/weather model/weathermodel.dart';
+import 'package:mobilerush/weather/weatherui.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: RecommendedPlacesScreen(),
+      debugShowCheckedModeBanner: false,
+      home: WeatherHome(),
     );
+  }
+}
+
+class WeatherHome extends StatefulWidget {
+  @override
+  _WeatherHomeState createState() => _WeatherHomeState();
+}
+
+class _WeatherHomeState extends State<WeatherHome> {
+  WeatherModel? weatherData;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchWeather();
+  }
+
+  Future<void> fetchWeather() async {
+    final weather = await WeatherAPI.fetchWeather();
+    setState(() {
+      weatherData = weather;
+      isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return isLoading
+        ? Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : WeatherUI(weather: weatherData!);
   }
 }
