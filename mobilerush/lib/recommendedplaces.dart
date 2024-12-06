@@ -53,9 +53,14 @@ class RecommendedPlacesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Recommended Places',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Container(
+              width: double.infinity, // Make the background span the whole width
+              color: Colors.red.withOpacity(0.2), // Red background with low opacity
+              padding: const EdgeInsets.all(8.0),
+              child: const Text(
+                'Recommended Places',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(height: 10),
             Expanded(
@@ -92,9 +97,14 @@ class RecommendedPlacesScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Chances of rain',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Container(
+              width: double.infinity, // Make the background span the whole width
+              color: Colors.red.withOpacity(0.2), // Red background with low opacity
+              padding: const EdgeInsets.all(8.0),
+              child: const Text(
+                'Chances of rain',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
             const SizedBox(height: 10),
             SizedBox(
