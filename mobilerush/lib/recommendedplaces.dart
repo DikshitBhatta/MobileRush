@@ -90,7 +90,7 @@ class RecommendedPlacesScreen extends StatelessWidget {
                     ),
                     title: Text(place['name']),
                     subtitle: Text(
-                      '${place['distance']} • ${place['description']}',
+                      '${place['distance']} • ${place['description']}',maxLines: 1,overflow: TextOverflow.ellipsis,
                     ),
                   );
                 },
