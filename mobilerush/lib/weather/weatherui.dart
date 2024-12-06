@@ -23,7 +23,7 @@ class WeatherUI extends StatelessWidget {
           gradient: backgroundGradient,
         ),
         child: SafeArea(
-          child: SingleChildScrollView( // Added SingleChildScrollView
+          child: SingleChildScrollView( 
             child: Column(
               children: [
                 Container(

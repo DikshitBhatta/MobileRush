@@ -50,7 +50,7 @@ class RecommendedPlacesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView( // Added SingleChildScrollView
+        child: SingleChildScrollView( 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -65,7 +65,7 @@ class RecommendedPlacesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: 300, // Adjust the height of the recommended places list
+                height: 300, 
                 child: ListView.builder(
                   itemCount: places.length,
                   itemBuilder: (context, index) {
@@ -111,15 +111,15 @@ class RecommendedPlacesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               SizedBox(
-                height: 200, // Adjust the height of the charts
+                height: 200, 
                 child: Row(
                   children: [
                     Column(
                       children: const [
                         Text('Heavy Rain', style: TextStyle(fontSize: 16)),
-                        SizedBox(height: 50), // Adjust the spacing
+                        SizedBox(height: 50), 
                         Text('Rainy', style: TextStyle(fontSize: 16)),
-                        SizedBox(height: 50), // Adjust the spacing
+                        SizedBox(height: 50), 
                         Text('Rain', style: TextStyle(fontSize: 16)),
                       ],
                     ),
