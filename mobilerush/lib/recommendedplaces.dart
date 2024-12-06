@@ -27,16 +27,16 @@ class RecommendedPlacesScreen extends StatelessWidget {
     },
   ];
 
-  final List<charts.Series<int, String>> rainData = [
-    charts.Series<int, String>(
+  final List<charts.Series<String, String>> rainData = [
+    charts.Series<String, String>(
       id: 'Rain',
-      data: [1, 3, 2, 5, 4, 5, 1],
+      data: ['Rain', 'Heavy Rain', 'Rainy', 'Heavy Rain', 'Heavy Rain', 'Rain', 'Rainy'],
       domainFn: (value, index) =>
           ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index!],
-      measureFn: (value, index) => value,
+      measureFn: (value, index) => value == 'Heavy Rain' ? 3 : value == 'Rainy' ? 2 : 1,
       colorFn: (value, index) => index == 5
-          ? charts.MaterialPalette.blue.shadeDefault 
-          : charts.MaterialPalette.gray.shadeDefault, 
+          ? charts.MaterialPalette.blue.shadeDefault
+          : charts.MaterialPalette.gray.shadeDefault,
     ),
   ];
 
@@ -55,7 +55,7 @@ class RecommendedPlacesScreen extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              color: Colors.red.withOpacity(0.2), 
+              color: Colors.red.withOpacity(0.2),
               padding: const EdgeInsets.all(8.0),
               child: const Text(
                 'Recommended Places',
@@ -74,14 +74,14 @@ class RecommendedPlacesScreen extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           backgroundImage:
-                              AssetImage('assets/image.png'), 
+                              AssetImage('assets/image.png'),
                           radius: 30,
                         ),
                         Positioned(
                           top: -10,
-                          left: -3, 
+                          left: -3,
                           child: Image.asset(
-                            'assets/Christmashat.png', 
+                            'assets/Christmashat.png',
                             width: 30,
                             height: 30,
                           ),
@@ -98,8 +98,8 @@ class RecommendedPlacesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              width: double.infinity, 
-              color: Colors.red.withOpacity(0.2), 
+              width: double.infinity,
+              color: Colors.red.withOpacity(0.2),
               padding: const EdgeInsets.all(8.0),
               child: const Text(
                 'Chances of rain',
@@ -107,13 +107,34 @@ class RecommendedPlacesScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            SizedBox(
-              height: 200,
-              child: charts.BarChart(
-                rainData,
-                animate: true,
-                vertical: true,
-              ),
+            Row(
+              children: [
+                Column(
+                  children: const [
+                    Text('Heavy Rain', style: TextStyle(fontSize: 16)),
+                    SizedBox(height: 100),
+                    Text('Rainy', style: TextStyle(fontSize: 16)),
+                    SizedBox(height: 100),
+                    Text('Rain', style: TextStyle(fontSize: 16)),
+                  ],
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: SizedBox(
+                    height: 200,
+                    child: charts.BarChart(
+                      rainData,
+                      animate: true,
+                      vertical: true,
+                      domainAxis: const charts.OrdinalAxisSpec(
+                        renderSpec: charts.SmallTickRendererSpec(
+                          labelRotation: 60,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
