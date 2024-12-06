@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mobilerush/weather/weatherapifetch.dart';
 import 'package:mobilerush/weather model/weathermodel.dart';
@@ -26,6 +25,7 @@ class WeatherHome extends StatefulWidget {
 class _WeatherHomeState extends State<WeatherHome> {
   WeatherModel? weatherData;
   bool isLoading = true;
+  String? errorMessage;
 
   @override
   void initState() {
@@ -34,21 +34,44 @@ class _WeatherHomeState extends State<WeatherHome> {
   }
 
   Future<void> fetchWeather() async {
-    final weather = await WeatherAPI.fetchWeather();
-    setState(() {
-      weatherData = weather;
-      isLoading = false;
-    });
+    try {
+      final weather = await WeatherAPI.fetchWeather();
+      setState(() {
+        weatherData = weather;
+        isLoading = false;
+      });
+      print('Weather data: $weatherData');
+    } catch (e) {
+      setState(() {
+        errorMessage = 'Error fetching weather data: $e';
+        isLoading = false;
+      });
+      print('Error message: $errorMessage');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          )
-        : WeatherUI(weather: weatherData!);
+    if (isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else if (errorMessage != null) {
+      return Scaffold(
+        body: Center(
+          child: Text(errorMessage!),
+        ),
+      );
+    } else if (weatherData != null) {
+      return WeatherUI(weather: weatherData!);
+    } else {
+      return Scaffold(
+        body: Center(
+          child: Text('No weather data available.'),
+        ),
+      );
+    }
   }
 }

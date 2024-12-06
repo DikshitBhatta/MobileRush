@@ -42,43 +42,55 @@ class WeatherUI extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '${weather.temperature.toStringAsFixed(1)}°C',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50,
-                            fontWeight: FontWeight.w500,
+                        Expanded(
+                          child: Text(
+                            '${weather.temperature.toStringAsFixed(1)}°C',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        VerticalDivider(
-                          color: Colors.white,
-                          thickness: 1,
-                          width: 20,
+                        SizedBox(
+                          height: 50,
+                          child: VerticalDivider(
+                            color: Colors.black,
+                            thickness: 1,
+                            width: 20,
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Icon(Icons.circle, color: Colors.white, size: 30),
-                            Row(
-                              children: [
-                                Text(
-                                  weather.condition,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(Icons.circle, color: Colors.white, size: 30),
+                              Row(
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      weather.condition,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: 5),
-                                Icon(Icons.cloud, color: Colors.white, size: 20),
-                              ],
-                            ),
-                            Text(
-                              formattedDate,
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 16,
+                                  SizedBox(width: 5),
+                                  Icon(Icons.cloud, color: Colors.white, size: 20),
+                                ],
                               ),
-                            ),
-                          ],
+                              Text(
+                                formattedDate,
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
