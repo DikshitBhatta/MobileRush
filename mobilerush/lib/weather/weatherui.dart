@@ -60,7 +60,7 @@ class WeatherUI extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Icon(Icons.brightness_5, color: Colors.yellow, size: 30), // Ball icon
+                          Icon(Icons.circle, color: Colors.white, size: 30), // Ball icon
                           Row(
                             children: [
                               Text(
