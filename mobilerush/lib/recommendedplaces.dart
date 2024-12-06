@@ -64,6 +64,7 @@ class RecommendedPlacesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Expanded(
+              flex: 2, // Increase the height of the recommended places list
               child: ListView.builder(
                 itemCount: places.length,
                 itemBuilder: (context, index) {
@@ -107,34 +108,37 @@ class RecommendedPlacesScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Row(
-              children: [
-                Column(
-                  children: const [
-                    Text('Heavy Rain', style: TextStyle(fontSize: 16)),
-                    SizedBox(height: 100),
-                    Text('Rainy', style: TextStyle(fontSize: 16)),
-                    SizedBox(height: 100),
-                    Text('Rain', style: TextStyle(fontSize: 16)),
-                  ],
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: SizedBox(
-                    height: 200,
-                    child: charts.BarChart(
-                      rainData,
-                      animate: true,
-                      vertical: true,
-                      domainAxis: const charts.OrdinalAxisSpec(
-                        renderSpec: charts.SmallTickRendererSpec(
-                          labelRotation: 60,
+            Expanded(
+              flex: 1, // Decrease the height of the charts
+              child: Row(
+                children: [
+                  Column(
+                    children: const [
+                      Text('Heavy Rain', style: TextStyle(fontSize: 16)),
+                      SizedBox(height: 50), // Adjust the spacing
+                      Text('Rainy', style: TextStyle(fontSize: 16)),
+                      SizedBox(height: 50), // Adjust the spacing
+                      Text('Rain', style: TextStyle(fontSize: 16)),
+                    ],
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: SizedBox(
+                      height: 150, // Adjust the height of the chart
+                      child: charts.BarChart(
+                        rainData,
+                        animate: true,
+                        vertical: true,
+                        domainAxis: const charts.OrdinalAxisSpec(
+                          renderSpec: charts.SmallTickRendererSpec(
+                            labelRotation: 60,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
