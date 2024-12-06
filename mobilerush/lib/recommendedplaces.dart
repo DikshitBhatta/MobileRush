@@ -50,81 +50,81 @@ class RecommendedPlacesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: double.infinity,
-              color: Colors.red.withOpacity(0.2),
-              padding: const EdgeInsets.all(8.0),
-              child: const Text(
-                'Recommended Places',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        child: SingleChildScrollView( // Added SingleChildScrollView
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                color: Colors.red.withOpacity(0.2),
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  'Recommended Places',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              flex: 2, // Increase the height of the recommended places list
-              child: ListView.builder(
-                itemCount: places.length,
-                itemBuilder: (context, index) {
-                  final place = places[index];
-                  return ListTile(
-                    leading: Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/image.png'),
-                          radius: 30,
-                        ),
-                        Positioned(
-                          top: -10,
-                          left: -3,
-                          child: Image.asset(
-                            'assets/Christmashat.png',
-                            width: 30,
-                            height: 30,
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 300, // Adjust the height of the recommended places list
+                child: ListView.builder(
+                  itemCount: places.length,
+                  itemBuilder: (context, index) {
+                    final place = places[index];
+                    return ListTile(
+                      leading: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage: AssetImage('assets/image.png'),
+                            radius: 30,
                           ),
-                        ),
+                          Positioned(
+                            top: -10,
+                            left: -3,
+                            child: Image.asset(
+                              'assets/Christmashat.png',
+                              width: 30,
+                              height: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                      title: Text(place['name']),
+                      subtitle: Text(
+                        '${place['distance']} • ${place['description']}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                color: Colors.red.withOpacity(0.2),
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  'Chances of rain',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 200, // Adjust the height of the charts
+                child: Row(
+                  children: [
+                    Column(
+                      children: const [
+                        Text('Heavy Rain', style: TextStyle(fontSize: 16)),
+                        SizedBox(height: 50), // Adjust the spacing
+                        Text('Rainy', style: TextStyle(fontSize: 16)),
+                        SizedBox(height: 50), // Adjust the spacing
+                        Text('Rain', style: TextStyle(fontSize: 16)),
                       ],
                     ),
-                    title: Text(place['name']),
-                    subtitle: Text(
-                      '${place['distance']} • ${place['description']}',maxLines: 1,overflow: TextOverflow.ellipsis,
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              width: double.infinity,
-              color: Colors.red.withOpacity(0.2),
-              padding: const EdgeInsets.all(8.0),
-              child: const Text(
-                'Chances of rain',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              flex: 1, // Decrease the height of the charts
-              child: Row(
-                children: [
-                  Column(
-                    children: const [
-                      Text('Heavy Rain', style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 50), // Adjust the spacing
-                      Text('Rainy', style: TextStyle(fontSize: 16)),
-                      SizedBox(height: 50), // Adjust the spacing
-                      Text('Rain', style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: SizedBox(
-                      height: 150, // Adjust the height of the chart
+                    const SizedBox(width: 10),
+                    Expanded(
                       child: charts.BarChart(
                         rainData,
                         animate: true,
@@ -136,11 +136,11 @@ class RecommendedPlacesScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

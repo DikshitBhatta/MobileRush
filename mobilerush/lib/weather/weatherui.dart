@@ -23,91 +23,91 @@ class WeatherUI extends StatelessWidget {
           gradient: backgroundGradient,
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    Text(
-                      weather.city,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+          child: SingleChildScrollView( // Added SingleChildScrollView
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        weather.city,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '${weather.temperature.toStringAsFixed(1)}°C',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.w500,
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              '${weather.temperature.toStringAsFixed(1)}°C',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          child: VerticalDivider(
-                            color: Colors.black,
-                            thickness: 1,
-                            width: 20,
+                          SizedBox(
+                            height: 50,
+                            child: VerticalDivider(
+                              color: Colors.black,
+                              thickness: 1,
+                              width: 20,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(Icons.circle, color: Colors.white, size: 30),
-                              Row(
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      weather.condition,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(Icons.circle, color: Colors.white, size: 30),
+                                Row(
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        weather.condition,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
-                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Icon(Icons.cloud, color: Colors.white, size: 20),
-                                ],
-                              ),
-                              Text(
-                                formattedDate,
-                                style: TextStyle(
-                                  color: Colors.white70,
-                                  fontSize: 16,
+                                    SizedBox(width: 5),
+                                    Icon(Icons.cloud, color: Colors.white, size: 20),
+                                  ],
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  formattedDate,
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Feels Like ${weather.feelsLike.toStringAsFixed(1)}°C',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
+                        ],
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10),
+                      Text(
+                        'Feels Like ${weather.feelsLike.toStringAsFixed(1)}°C',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 30),
-              Expanded(
-                child: Container(
+                SizedBox(height: 30),
+                Container(
                   padding: const EdgeInsets.all(20.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -181,8 +181,8 @@ class WeatherUI extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
