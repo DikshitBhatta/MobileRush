@@ -1,8 +1,8 @@
-// weather_ui.dart
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Add this import
+import 'package:intl/intl.dart'; 
 import 'package:mobilerush/weather model/weathermodel.dart';
-import 'package:mobilerush/recommendedplaces.dart'; // Add this import
+import 'package:mobilerush/recommendedplaces.dart'; 
 
 class WeatherUI extends StatelessWidget {
   final WeatherModel weather;
@@ -13,14 +13,14 @@ class WeatherUI extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get today's date
     final DateTime now = DateTime.now();
-    final String formattedDate = DateFormat('EEEE, d MMMM').format(now); // Use intl package for date formatting
+    final String formattedDate = DateFormat('EEEE, d MMMM').format(now); 
 
     return Scaffold(
       backgroundColor: Colors.blue[50],
       body: SafeArea(
         child: Column(
           children: [
-            // Top Section
+
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
@@ -60,7 +60,7 @@ class WeatherUI extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Icon(Icons.circle, color: Colors.white, size: 30), // Ball icon
+                          Icon(Icons.circle, color: Colors.white, size: 30), 
                           Row(
                             children: [
                               Text(
@@ -71,7 +71,7 @@ class WeatherUI extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(width: 5),
-                              Icon(Icons.cloud, color: Colors.white, size: 20), // Cloud icon
+                              Icon(Icons.cloud, color: Colors.white, size: 20), 
                             ],
                           ),
                           Text(
@@ -97,10 +97,9 @@ class WeatherUI extends StatelessWidget {
               ),
             ),
 
-            // Spacer
             SizedBox(height: 30),
 
-            // Weather Details Section
+
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(20.0),

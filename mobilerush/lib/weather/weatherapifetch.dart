@@ -1,4 +1,4 @@
-// weather_fetch_api.dart
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mobilerush/weather model/\weathermodel.dart';
@@ -12,7 +12,7 @@ class WeatherAPI {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        print('API Response: $data'); // Debugging
+        print('API Response: $data'); 
         return WeatherModel.fromJson(data);
       } else {
         print('Failed to load weather data: ${response.statusCode}');

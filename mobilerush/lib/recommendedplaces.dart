@@ -30,13 +30,13 @@ class RecommendedPlacesScreen extends StatelessWidget {
   final List<charts.Series<int, String>> rainData = [
     charts.Series<int, String>(
       id: 'Rain',
-      data: [1, 3, 2, 5, 4, 5, 1], // Data for all days
+      data: [1, 3, 2, 5, 4, 5, 1],
       domainFn: (value, index) =>
           ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index!],
       measureFn: (value, index) => value,
       colorFn: (value, index) => index == 5
-          ? charts.MaterialPalette.blue.shadeDefault // Friday
-          : charts.MaterialPalette.gray.shadeDefault, // Other days
+          ? charts.MaterialPalette.blue.shadeDefault 
+          : charts.MaterialPalette.gray.shadeDefault, 
     ),
   ];
 
@@ -54,8 +54,8 @@ class RecommendedPlacesScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: double.infinity, // Make the background span the whole width
-              color: Colors.red.withOpacity(0.2), // Red background with low opacity
+              width: double.infinity,
+              color: Colors.red.withOpacity(0.2), 
               padding: const EdgeInsets.all(8.0),
               child: const Text(
                 'Recommended Places',
@@ -74,14 +74,14 @@ class RecommendedPlacesScreen extends StatelessWidget {
                       children: [
                         const CircleAvatar(
                           backgroundImage:
-                              AssetImage('assets/image.png'), // Add your asset
+                              AssetImage('assets/image.png'), 
                           radius: 30,
                         ),
                         Positioned(
                           top: -10,
-                          left: -3, // Change to left
+                          left: -3, 
                           child: Image.asset(
-                            'assets/Christmashat.png', // Add your Christmas hat asset
+                            'assets/Christmashat.png', 
                             width: 30,
                             height: 30,
                           ),
@@ -98,8 +98,8 @@ class RecommendedPlacesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Container(
-              width: double.infinity, // Make the background span the whole width
-              color: Colors.red.withOpacity(0.2), // Red background with low opacity
+              width: double.infinity, 
+              color: Colors.red.withOpacity(0.2), 
               padding: const EdgeInsets.all(8.0),
               child: const Text(
                 'Chances of rain',

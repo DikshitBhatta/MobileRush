@@ -1,4 +1,4 @@
-// main.dart
+
 import 'package:flutter/material.dart';
 import 'package:mobilerush/weather/weatherapifetch.dart';
 import 'package:mobilerush/weather model/weathermodel.dart';

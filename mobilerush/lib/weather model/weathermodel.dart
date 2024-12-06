@@ -1,4 +1,4 @@
-// weather_model.dart
+
 class WeatherModel {
   final String city;
   final double latitude;
